@@ -59,7 +59,9 @@ function App() {
              {
                //Check if restaurant has more then one outlet
              item?.outlet?.length > 1 ? 
-             (<img src={item.restaurantImage} key={item?.outlet?.outletId} onClick={showOutlet(item?.outlet?.outletName)} alt="resturant" />) : 
+             (<img src={item.restaurantImage} key={item?.outlet?.outletId}
+              //  onClick={showOutlet(item?.outlet?.outletName)} alt="resturant"
+                />) : 
              (<img src={item.restaurantImage} onClick={showNothing}  alt="resturant" />)
              }
                
