@@ -63,7 +63,7 @@ function App() {
              item?.outlet?.length > 1 ? 
              (
              <img src={item.restaurantImage} 
-              //line below has an error
+              
                onClick={()=>{
                  showOutlet(item?.outlet)}} alt="resturant"
                 />
