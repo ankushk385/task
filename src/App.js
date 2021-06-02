@@ -28,9 +28,7 @@ function App() {
     setOutletName(nameobj)
    setOpenModal(true)
   }
-  const showNothing = ()=>{
-   alert("only one outlet exsist")
-  }
+  
   const closeModal = ()=>{
     setOpenModal(false)
    }
@@ -62,15 +60,20 @@ function App() {
                //Check if restaurant has more then one outlet
              item?.outlet?.length > 1 ? 
              (
+               <>
              <img src={item.restaurantImage} 
               
                onClick={()=>{
                  showOutlet(item?.outlet)}} alt="resturant"
                 />
-          
+                <p>click on image to see other outlets</p>
+          </>
             
                 ) : 
-             (<img src={item.restaurantImage} onClick={showNothing}  alt="resturant" />)
+             (
+             <img src={item.restaurantImage}  alt="resturant" />
+
+             )
              }
                
               </div>
