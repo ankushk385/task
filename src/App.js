@@ -7,7 +7,8 @@ function App() {
   const [data, setData] = useState([])
   const [restaurantLength, SetRestaurantLength] = useState("")
   const [openModal, setOpenModal] = useState(false);
-  const [outletName, setOutletName] = useState("")
+  const [outletName, setOutletName] = useState([])
+
 
 
   const url = 'https://eatoo.uberdoo.com/foodapp/public/api/guest/listRestaurant';
@@ -22,12 +23,13 @@ function App() {
     }).catch((error)=>console.log(error)); 
   }
 
-  const showOutlet = (name)=>{
-    setOutletName(name)
+  const showOutlet = (nameobj)=>{
+  
+    setOutletName(nameobj)
    setOpenModal(true)
   }
   const showNothing = ()=>{
-    console.log("only one outlet exsist")
+   alert("only one outlet exsist")
   }
   const closeModal = ()=>{
     setOpenModal(false)
@@ -59,9 +61,15 @@ function App() {
              {
                //Check if restaurant has more then one outlet
              item?.outlet?.length > 1 ? 
-             (<img src={item.restaurantImage} key={item?.outlet?.outletId}
-              //  onClick={showOutlet(item?.outlet?.outletName)} alt="resturant"
-                />) : 
+             (
+             <img src={item.restaurantImage} 
+              //line below has an error
+               onClick={()=>{
+                 showOutlet(item?.outlet)}} alt="resturant"
+                />
+          
+            
+                ) : 
              (<img src={item.restaurantImage} onClick={showNothing}  alt="resturant" />)
              }
                
@@ -97,9 +105,13 @@ function App() {
             ariaHideApp={false}
             className="mymodal"
             overlayClassName="myoverlay"
+
           >
-            <label htmlFor="">resturant name</label>
-            <h5>{outletName}</h5>
+            <label htmlFor="">resturant outlet names</label>
+
+            {outletName.map((item2)=>(
+              <h3 key={item2.outletId}>{item2.outletName}</h3>
+            ))}
             
             <button onClick={closeModal}>close</button>
           </Modal>
